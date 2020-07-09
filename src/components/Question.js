@@ -2,7 +2,7 @@ import React, {Fragment, useState}from 'react';
 import Error from './ErrorAlert'
 
 
-const Question = ({saveBudget, saveRemaining}) => {
+const Question = ({saveBudget, saveRemaining, updateQuestionComponent}) => {
     // Set Sate
     const [amount, saveAmount] = useState (0);
     // Set State Error
@@ -26,6 +26,7 @@ const Question = ({saveBudget, saveRemaining}) => {
         saveError(false);
         saveBudget(amount);
         saveRemaining(amount);
+        updateQuestionComponent(false);
 
     }
 
