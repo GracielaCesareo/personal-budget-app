@@ -8,7 +8,18 @@ function App() {
   // Set State Remaining
   const [ remaining, saveRemaining ] = useState(0);
   // Set State Show Component
-  const [ showquestioncomponent, updateQuestionComponent] = useState (true)
+  const [ showquestioncomponent, updateQuestionComponent] = useState (true);
+  // Set State Expense
+  const [ expenses, saveExpenses] = useState([]);
+
+  // Adding new expnse
+  const saveNewExpense = expense => {
+    saveExpenses([
+      ...expenses,
+      expense
+    ])
+    
+  }
 
 
   return (
@@ -28,7 +39,9 @@ function App() {
               (
                 <div className="row">
                   <div className="one-half column">
-                    <Form />
+                    <Form 
+                      saveNewExpense={saveNewExpense}
+                    />
                   </div>
                   <div className="one-half column">
                     2

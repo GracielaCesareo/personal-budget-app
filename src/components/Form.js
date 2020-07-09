@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import ErrorAlert from './ErrorAlert'
+import ErrorAlert from './ErrorAlert';
+import shortid from 'shortid'
 
 
-const Form = () => {
+const Form = ({saveNewExpense}) => {
     // Set State Expense Name
     const [ expensename, saveExpenseName] = useState('');
     // Set State Save Amount
@@ -18,7 +19,22 @@ const Form = () => {
             saveError(true);
             return
         }
-        saveError(false)
+        saveError(false);
+
+        // Object expense
+
+        const expense = {
+            expensename,
+            amount,
+            id: shortid.generate()
+        }
+
+        // Save New Expense Function
+        saveNewExpense(expense);
+
+        // Reset Form
+        saveExpenseName('');
+        saveAmount(0);
     }
     return (
         <form
