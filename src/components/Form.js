@@ -1,15 +1,24 @@
 import React, {useState} from 'react';
+import ErrorAlert from './ErrorAlert'
+
 
 const Form = () => {
     // Set State Expense Name
     const [ expensename, saveExpenseName] = useState('');
     // Set State Save Amount
     const [ amount, saveAmount] = useState(0);
+    // Set State Error
+    const [ error, saveError] = useState (false);
 
-    const addExpense = e => {
+    const addExpense = (e) => {
         e.preventDefault();
 
-        
+        // Input Validation
+        if( amount <= 0 || isNaN(amount) || expensename.trim() === ''){
+            saveError(true);
+            return
+        }
+        saveError(false)
     }
     return (
         <form
@@ -17,6 +26,9 @@ const Form = () => {
         
         >
             <h2>Add your expenses</h2>
+
+            {error ? <ErrorAlert message="There is an error" /> : null}
+
             <div className="campo">
                 <label htmlFor="">Expense</label>
                 <input
