@@ -3,7 +3,7 @@ import ErrorAlert from './ErrorAlert';
 import shortid from 'shortid'
 
 
-const Form = ({saveNewExpense}) => {
+const Form = ({saveExpense, saveExpenseCreated}) => {
     // Set State Expense Name
     const [ expensename, saveExpenseName] = useState('');
     // Set State Save Amount
@@ -30,7 +30,8 @@ const Form = ({saveNewExpense}) => {
         }
 
         // Save New Expense Function
-        saveNewExpense(expense);
+        saveExpense(expense);
+        saveExpenseCreated(true)
 
         // Reset Form
         saveExpenseName('');
